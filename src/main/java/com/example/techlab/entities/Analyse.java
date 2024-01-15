@@ -1,9 +1,6 @@
 package com.example.techlab.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -16,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @Table(name = "analyses")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Builder
 public class Analyse {
 
     @Id

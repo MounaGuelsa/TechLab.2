@@ -11,30 +11,23 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.techlab.TechLabApplication;
-import com.example.techlab.entities.Patient;
-import com.example.techlab.entities.enums.Sexe;
-import org.junit.jupiter.api.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+
 
 @SpringBootTest
 @SpringJUnitConfig(TechLabApplication.class)
 class TestRepositoryTest {
 
     private TestRepository testRepository;
-
-    @Autowired
     private TestTypeRepository testTypeRepository;
+    @Autowired
+    public TestRepositoryTest(TestRepository testRepository, TestTypeRepository testTypeRepository) {
+        this.testRepository = testRepository;
+        this.testTypeRepository = testTypeRepository;
+    }
+
+
 
     private Test test1;
     private Test test2;
@@ -67,7 +60,7 @@ class TestRepositoryTest {
     @org.junit.jupiter.api.Test
     @Order(1)
     @DisplayName("shouldReturnTestTypeWhenGettingById")
-    public void shouldReturnTestTypeWhenGettingById() {
+    public void shouldReturnTestWhenGettingById() {
         // arrange
         // act
         Optional<Test> sampleOptional = testRepository.findById(test1.getId());
@@ -94,7 +87,6 @@ class TestRepositoryTest {
     public void shouldSaveTestAndReturnTestType() {
         // arrange
         Test test = Test.builder()
-
                 .label("testx")
                 .resultat(18.0)
                 .build();
