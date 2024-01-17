@@ -23,22 +23,22 @@ public class TechLabApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-//        Patient patient = new Patient();
-//        patient.setNom("Doe");
-//        patient.setPrenom("John");
-////        patient.setDdn(new LocalD);
-//        patient.setSexe(Sexe.MASCULIN);
-//        patient.setAdresse("123 Main St");
-//        patient.setTelephone("1234567890");
-//        // Save the patient
-//        patientRepository.save(patient);
-//        System.out.println(patient.toString());
-////
-//        List<Patient> allPatients = patientRepository.findAll();
-//        System.out.println("All patients:");
-//        for (Patient p : allPatients) {
-//            System.out.println(p);
-//        }
+        Patient patient = new Patient();
+        patient.setNom("Doe");
+        patient.setPrenom("John");
+//        patient.setDdn(new LocalD);
+        patient.setSexe(Sexe.MASCULIN);
+        patient.setAdresse("123 Main St");
+        patient.setTelephone("1234567890");
+        // Save the patient
+        patientRepository.save(patient);
+        System.out.println(patient.toString());
+//
+        List<Patient> allPatients = patientRepository.findAll();
+        System.out.println("All patients:");
+        for (Patient p : allPatients) {
+            System.out.println(p);
+        }
 
     }
 }
