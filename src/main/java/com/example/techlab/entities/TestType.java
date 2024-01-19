@@ -10,7 +10,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 
-@Table(name="testtypes")
+@Table(name="\"testtypes\"")
 public class TestType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

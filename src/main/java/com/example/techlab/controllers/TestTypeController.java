@@ -1,6 +1,5 @@
 package com.example.techlab.controllers;
 
-import com.example.techlab.dto.ReactifDTO;
 import com.example.techlab.dto.TestTypeDTO;
 import com.example.techlab.services.TestTypeService;
 import org.springframework.beans.factory.annotation.Autowired;

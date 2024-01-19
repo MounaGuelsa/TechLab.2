@@ -13,7 +13,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "analyses")
+@Table(name = "\"analyse\"")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Builder
 public class Analyse {

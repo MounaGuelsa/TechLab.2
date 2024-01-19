@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Table(name="planifications")
+@Table(name="\"planifications\"")
 
 public class Planification extends Analyse {
 

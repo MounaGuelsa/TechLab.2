@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Table(name = "patients")
+@Table(name = "\"patients\"")
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

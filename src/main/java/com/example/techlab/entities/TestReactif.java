@@ -11,7 +11,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 
-@Table(name="test_reactif")
+@Table(name="\"test_reactif\"")
 public class TestReactif {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
