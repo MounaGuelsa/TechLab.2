@@ -1,6 +1,7 @@
 package com.example.techlab.controllers;
 
 import com.example.techlab.dto.PatientDTO;
+import com.example.techlab.dto.TestTypeDTO;
 import com.example.techlab.entities.Analyse;
 import com.example.techlab.services.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +46,13 @@ public class PatientController {
         patientService.supprimerPatient(idPatient);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
+    @PutMapping("/{idPatient}")
+    public ResponseEntity<PatientDTO> modifierPatient(
+            @PathVariable Long idPatient,
+            @RequestBody PatientDTO patientDTO) {
+        PatientDTO updatedPatientDTO = patientService.modifierPatient(idPatient, patientDTO);
+        return new ResponseEntity<>(updatedPatientDTO, HttpStatus.OK);
+    }
 //    @GetMapping("/{idPatient}/analyses")
 //    public ResponseEntity<List<Analyse>> obtenirAnalysesParPatient(@PathVariable Long idPatient) {
 //        // You can implement the logic to obtain analyses based on the patient ID here

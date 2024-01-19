@@ -3,6 +3,7 @@ package com.example.techlab.servicesImp;
 import com.example.techlab.dto.PatientDTO;
 import com.example.techlab.entities.Analyse;
 import com.example.techlab.entities.Patient;
+import com.example.techlab.entities.TestType;
 import com.example.techlab.exceptions.CustomException;
 import com.example.techlab.mapper.PatientMapper;
 import com.example.techlab.repositories.PatientRepository;
@@ -41,7 +42,6 @@ public class PatientServiceImp implements PatientService {
         patientRepository.save(patient);
         return patientMapper.toDTO(patient);
     }
-
     @Override
     public PatientDTO obtenirPatientParId(Long idPatient) {
         Optional<Patient> patientOptional = patientRepository.findById(idPatient);
@@ -54,8 +54,35 @@ public class PatientServiceImp implements PatientService {
     }
 
     @Override
+    public PatientDTO modifierPatient(Long idPatient, PatientDTO patientDTO) {
+
+        Optional<Patient> existingPatientOptional = patientRepository.findById(idPatient);
+
+        if (!existingPatientOptional.isPresent()) {
+            throw new CustomException("Patient avec " + idPatient + " est introuvable", HttpStatus.NOT_FOUND);
+        }
+
+        Patient existingPatient = existingPatientOptional.get();
+        existingPatient.setNom(patientDTO.getNom());
+        existingPatient.setPrenom(patientDTO.getPrenom());
+        existingPatient.setSexe(patientDTO.getSexe());
+        existingPatient.setAdresse(patientDTO.getAdresse());
+        existingPatient.setTelephone(patientDTO.getTelephone());
+        existingPatient.setDdn(patientDTO.getDdn());
+
+        Patient updatedUpdated = patientRepository.save(existingPatient);
+        return patientMapper.toDTO(updatedUpdated);
+    }
+
+    @Override
     public void supprimerPatient(Long idPatient) {
-        patientRepository.deleteById(idPatient);
+        Optional<Patient> patientOptional = patientRepository.findById(idPatient);
+        if (!patientOptional.isPresent()) {
+            throw new CustomException("patient avec "+idPatient+"  est introuvable ", HttpStatus.NOT_FOUND);
+        } else {
+            patientRepository.deleteById(idPatient);;
+
+        }
     }
 
     @Override

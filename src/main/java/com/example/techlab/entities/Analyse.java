@@ -1,5 +1,7 @@
 package com.example.techlab.entities;
 
+import com.example.techlab.entities.enums.StatutAnalyse;
+import com.example.techlab.entities.enums.TypeAnalyse;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,13 +21,13 @@ public class Analyse {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
+    private TypeAnalyse typeAnalyse;
     private Date dateEffet;
     private String commentaire;
 
     @ManyToOne
     private Patient patient;
-
+    private StatutAnalyse statut;
     @ManyToOne
     @JoinColumn(name = "id_echantillon")
     private Echantillon echantillon;

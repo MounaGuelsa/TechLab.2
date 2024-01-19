@@ -1,7 +1,8 @@
 package com.example.techlab.entities;
 
-import com.example.techlab.entities.enums.StatutEchantillon;
+
 import com.example.techlab.entities.enums.StatutResultat;
+import com.example.techlab.entities.enums.TypeAnalyse;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,12 +26,12 @@ public class Echantillon {
     @Column(name = "type_echantillon")
     private String type;
 
+    @Column(name = "description_echantillon")
+    private String description;
     @Column(name = "date_prelevement")
     private LocalDate datePrelevement;
-
-    @Column(name = "statut_echantillon")
-    private StatutEchantillon statutEchantillon;
-
+    @Column(name = "typeAnalyse")
+    private TypeAnalyse typeAnalyse;
     @ManyToOne
     @JoinColumn(name = "id_patient")
     private Patient patient;
@@ -38,6 +39,5 @@ public class Echantillon {
     @OneToMany(mappedBy = "echantillon", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Analyse> analysesList;
 
-    @Column(name = "statut_resultat")
-    private StatutResultat statutResultat;
+
 }
