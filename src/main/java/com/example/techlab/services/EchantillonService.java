@@ -15,6 +15,6 @@ public interface EchantillonService {
 
     public EchantillonDTO modifierEchantillon(Long idEchantillon, EchantillonDTO echantillonDTO);
 
-
     public void supprimerEchantillon(Long idEchantillon);
+
 }

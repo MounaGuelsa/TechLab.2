@@ -1,10 +1,13 @@
 package com.example.techlab;
 
 import com.example.techlab.dto.TestTypeDTO;
+import com.example.techlab.entities.Echantillon;
 import com.example.techlab.entities.Patient;
 import com.example.techlab.entities.Reactif;
 import com.example.techlab.entities.TestType;
 import com.example.techlab.entities.enums.Sexe;
+import com.example.techlab.entities.enums.TypeAnalyse;
+import com.example.techlab.repositories.EchantillonRepository;
 import com.example.techlab.repositories.PatientRepository;
 import com.example.techlab.repositories.ReactifRepository;
 import com.example.techlab.repositories.TestTypeRepository;
@@ -28,7 +31,8 @@ public class TechLabApplication implements CommandLineRunner {
 
     @Autowired
     private TestTypeRepository testTypeRepository;
-
+    @Autowired
+    private EchantillonRepository echantillonRepository;
     public static void main(String[] args) {
         SpringApplication.run(TechLabApplication.class, args);
     }
@@ -88,6 +92,29 @@ public class TechLabApplication implements CommandLineRunner {
 
         TestType testType3 = TestType.builder().nomTest("Test C").max(30.0).min(25.0).unite("Unité C").build();
         testTypeRepository.save(testType3);
+        Echantillon echantillon1 = Echantillon.builder()
+                .type("Blood")
+                .description("Blood sample for analysis")
+                .datePrelevement(LocalDate.now())
+                .typeAnalyse(TypeAnalyse.MICROBIOLOGIE)
+                .patient(patient)  // Assuming you have a Patient instance created and assigned to the 'patient' variable
+                .analysesList(new ArrayList<>())  // Initialize with an empty list or add analyses later
+                .build();
+
+// Save the echantillon1
+        echantillonRepository.save(echantillon1);
+
+// Similarly, you can create more instances of Echantillon and save them
+        Echantillon echantillon2 = Echantillon.builder()
+                .type("Urine")
+                .description("Urine sample for analysis")
+                .datePrelevement(LocalDate.now())
+                .typeAnalyse(TypeAnalyse.BIOCHIMIE)
+                .patient(patient)
+                .analysesList(new ArrayList<>())
+                .build();
+
+        echantillonRepository.save(echantillon2);
 
     }
 }
