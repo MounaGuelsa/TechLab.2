@@ -20,6 +20,6 @@ public class EchantillonDTO {
     private LocalDate datePrelevement;
     private TypeAnalyse typeAnalyse;
     private long patientId;
-    private List<AnalyseDTO> analysesList;
+    //private List<AnalyseDTO> analysesList;
    }
 

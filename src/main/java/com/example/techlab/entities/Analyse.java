@@ -31,12 +31,11 @@ public class Analyse {
     @ManyToOne
     @JoinColumn(name = "id_echantillon")
     private Echantillon echantillon;
-
     @ManyToOne
     @JoinColumn(name = "technicien_id")
     private Utilisateur technicien;
 
     @OneToMany(mappedBy = "analyse", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Test> testsList= new ArrayList<>();
+    private List<Test> testsList = new ArrayList<>();
 }
 
