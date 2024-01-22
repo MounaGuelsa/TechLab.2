@@ -6,6 +6,5 @@ import com.example.techlab.entities.Echantillon;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel="spring")
-
 public interface EchantillonMapper extends GlobalMapper<EchantillonDTO, Echantillon>{
 }

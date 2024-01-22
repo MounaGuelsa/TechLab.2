@@ -22,9 +22,9 @@ import java.util.Date;
 import java.util.List;
 
 @SpringBootApplication
-public class TechLabApplication implements CommandLineRunner {
+public class TechLabApplication /*implements CommandLineRunner*/ {
 
-    @Autowired
+   /* @Autowired
     private PatientRepository patientRepository;
     @Autowired
     private ReactifRepository reactifRepository;
@@ -33,10 +33,13 @@ public class TechLabApplication implements CommandLineRunner {
     private TestTypeRepository testTypeRepository;
     @Autowired
     private EchantillonRepository echantillonRepository;
+    */
+
     public static void main(String[] args) {
         SpringApplication.run(TechLabApplication.class, args);
     }
 
+    /*
     @Override
     public void run(String... args) throws Exception {
         Patient patient = new Patient();
@@ -55,7 +58,8 @@ public class TechLabApplication implements CommandLineRunner {
         for (Patient p : allPatients) {
             System.out.println(p);
         }
-        Reactif reactif = new Reactif();
+
+    Reactif reactif = new Reactif();
         // Example 1
         Reactif reactif1 = new Reactif();
         reactif1.setNomReactif("Reactif A");
@@ -114,7 +118,7 @@ public class TechLabApplication implements CommandLineRunner {
                 .analysesList(new ArrayList<>())
                 .build();
 
-        echantillonRepository.save(echantillon2);
+        echantillonRepository.save(echantillon2);*/
 
-    }
+
 }

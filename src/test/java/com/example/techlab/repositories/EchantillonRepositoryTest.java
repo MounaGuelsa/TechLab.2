@@ -4,7 +4,6 @@ import com.example.techlab.TechLabApplication;
 import com.example.techlab.entities.Echantillon;
 import com.example.techlab.entities.Patient;
 import com.example.techlab.entities.enums.Sexe;
-import com.example.techlab.entities.enums.StatutEchantillon;
 import com.example.techlab.entities.enums.StatutResultat;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,8 +48,6 @@ class EchantillonRepositoryTest {
         echantillon1 = Echantillon.builder()
                 .type("sang")
                 .datePrelevement(LocalDate.now())
-                .statutEchantillon(StatutEchantillon.EN_ATTENTE)
-                .statutResultat(StatutResultat.ANORMAL)
                 .patient(patient)
 
                 .build();
@@ -58,8 +55,6 @@ class EchantillonRepositoryTest {
         echantillon1 = Echantillon.builder()
                 .type("sang")
                 .datePrelevement(LocalDate.now())
-                .statutEchantillon(StatutEchantillon.EN_ATTENTE)
-                .statutResultat(StatutResultat.ANORMAL)
                 .patient(patient)
 
                 .build();
@@ -99,8 +94,6 @@ class EchantillonRepositoryTest {
         Echantillon echantillonSaved = Echantillon.builder()
                 .type("sang")
                 .datePrelevement(LocalDate.now())
-                .statutEchantillon(StatutEchantillon.EN_ATTENTE)
-                .statutResultat(StatutResultat.ANORMAL)
                 .patient(patient)
                 .build();
 

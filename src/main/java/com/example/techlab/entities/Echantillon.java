@@ -1,13 +1,11 @@
 package com.example.techlab.entities;
 
 
-import com.example.techlab.entities.enums.StatutResultat;
 import com.example.techlab.entities.enums.TypeAnalyse;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Builder
@@ -16,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Table(name = "echantillons")
+@Table(name = "\"echantillons\"")
 public class Echantillon {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

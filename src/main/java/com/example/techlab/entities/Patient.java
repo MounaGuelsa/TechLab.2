@@ -40,5 +40,5 @@ public class Patient {
     private String telephone;
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Analyse> analyses = new ArrayList<>();
+    private List<Analyse> analyses;
 }

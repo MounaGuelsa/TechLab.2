@@ -26,8 +26,12 @@ public class EchantillonServiceImp implements EchantillonService {
 
     @Override
     public List<EchantillonDTO> obtenirEchantillons() {
-        return echantillonRepository.findAll()
-                .stream().map(echantillonMapper::toDTO).collect(Collectors.toList());
+        List<EchantillonDTO> echantillonDTOList = echantillonRepository
+                .findAll()
+                .stream()
+                .map(echantillonMapper::toDTO)
+                .collect(Collectors.toList());
+        return echantillonDTOList;
     }
 
     @Override

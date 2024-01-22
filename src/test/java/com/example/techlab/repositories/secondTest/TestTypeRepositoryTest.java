@@ -1,9 +1,10 @@
-package com.example.techlab.repositories;
+package com.example.techlab.repositories.secondTest;
 
 import com.example.techlab.TechLabApplication;
 import com.example.techlab.entities.Patient;
 import com.example.techlab.entities.TestType;
 import com.example.techlab.entities.enums.Sexe;
+import com.example.techlab.repositories.TestTypeRepository;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

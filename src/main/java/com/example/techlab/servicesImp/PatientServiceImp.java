@@ -63,6 +63,7 @@ public class PatientServiceImp implements PatientService {
         }
 
         Patient existingPatient = existingPatientOptional.get();
+
         existingPatient.setNom(patientDTO.getNom());
         existingPatient.setPrenom(patientDTO.getPrenom());
         existingPatient.setSexe(patientDTO.getSexe());
@@ -71,6 +72,7 @@ public class PatientServiceImp implements PatientService {
         existingPatient.setDdn(patientDTO.getDdn());
 
         Patient updatedUpdated = patientRepository.save(existingPatient);
+
         return patientMapper.toDTO(updatedUpdated);
     }
 
@@ -78,7 +80,7 @@ public class PatientServiceImp implements PatientService {
     public void supprimerPatient(Long idPatient) {
         Optional<Patient> patientOptional = patientRepository.findById(idPatient);
         if (!patientOptional.isPresent()) {
-            throw new CustomException("patient avec "+idPatient+"  est introuvable ", HttpStatus.NOT_FOUND);
+            throw new CustomException("patient avec "+idPatient+" est introuvable", HttpStatus.NOT_FOUND);
         } else {
             patientRepository.deleteById(idPatient);;
 

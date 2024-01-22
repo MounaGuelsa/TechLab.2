@@ -9,8 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class TestDTO {
+public class TestReactifDTO {
     private long id;
-    private String label;
-    private Double resultat;
 }

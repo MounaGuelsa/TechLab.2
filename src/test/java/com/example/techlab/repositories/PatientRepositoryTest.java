@@ -78,12 +78,12 @@ class PatientRepositoryTest {
     public void PatientRepository_Save_ReturnPatient() {
         // arrange
         Patient patientSaved = Patient.builder()
-                .nom("hasna")
-                .prenom("oubali")
-                .ddn(LocalDate.of(2000, 12, 12))
-                .sexe(Sexe.FEMMINEN)
-                .adresse("casa")
-                .telephone("066050505")
+                .nom("Yassin")
+                .prenom("prenom")
+                .ddn(LocalDate.of(2003, 12, 12))
+                .sexe(Sexe.MASCULIN)
+                .adresse("casablanca Maroc")
+                .telephone("0606060606")
                 .build();
 
         //act
@@ -91,6 +91,7 @@ class PatientRepositoryTest {
 
         //assert
         Optional<Patient> patient5 = patientRepository.findById(patientSaved.getId());
+        assertTrue(patient5.isPresent());
         assertEquals(patientSaved.getId(),patient5.get().getId());
     }
     @Test

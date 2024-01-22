@@ -1,17 +1,11 @@
 package com.example.techlab.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Table;
-import java.time.LocalDateTime;
-
+import java.util.Date;
 
 
 @Entity
@@ -23,11 +17,12 @@ import java.time.LocalDateTime;
 
 public class Planification extends Analyse {
 
-    private LocalDateTime dateDebut;
-    private LocalDateTime dateFin;
+    private Date dateDebut;
+    private Date dateFin;
 
     @ManyToOne
     @JoinColumn(name = "technicien_id")
     private Utilisateur technicien;
+
 }
 

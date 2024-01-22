@@ -1,7 +1,8 @@
-package com.example.techlab.repositories;
+package com.example.techlab.repositories.secondTest;
 
 import com.example.techlab.TechLabApplication;
 import com.example.techlab.entities.Reactif;
+import com.example.techlab.repositories.ReactifRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
