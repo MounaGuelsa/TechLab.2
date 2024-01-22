@@ -23,4 +23,5 @@ public class UtilisateurDTO {
     private String informationsPersonnelles;
     private List<Analyse> analyses;
     private List<Planification> planifications;
+    //user dtos
 }
