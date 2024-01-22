@@ -1,109 +1,115 @@
 package com.example.techlab.servicesImp;
 
-import com.example.techlab.TechLabApplication;
-import com.example.techlab.dto.PatientDTO;
 import com.example.techlab.dto.UtilisateurDTO;
+import com.example.techlab.entities.Utilisateur;
 import com.example.techlab.entities.enums.Role;
+import com.example.techlab.exceptions.CustomException;
+import com.example.techlab.mapper.UtilisateurMapper;
 import com.example.techlab.repositories.UtilisateurRepository;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
-@SpringBootTest
-@SpringJUnitConfig(TechLabApplication.class)
+import org.junit.jupiter.api.*;
+
 class UtilisateurServiceImpTest {
 
-    @Autowired
-    private UtilisateurServiceImp utilisateurServiceImp;
-    @Autowired
+    @Mock
+    private UtilisateurMapper utilisateurMapper;
+    @Mock
     private UtilisateurRepository utilisateurRepository;
+    @InjectMocks
+    private UtilisateurServiceImp utilisateurService;
 
-    private UtilisateurDTO utilisateurDTO1;
-    private UtilisateurDTO utilisateurDTO2;
-    private UtilisateurDTO utilisateurDTO3;
     @BeforeEach
+
     void setUp(){
-        utilisateurRepository.deleteAll();
-
-        utilisateurDTO1 = UtilisateurDTO
-                .builder()
-                .nomUtilisateur("Yassin1")
-                .mdp("yassinmdp")
-                .role(Role.ADMIN)
-                .informationsPersonnelles("mes informatins perssonelles")
-                .build();
-
-        utilisateurDTO2 = UtilisateurDTO
-                .builder()
-                .nomUtilisateur("Yassin2")
-                .mdp("yassinmdp")
-                .role(Role.TECHNICIEN)
-                .informationsPersonnelles("mes informatins perssonelles")
-                .build();
-
-        utilisateurDTO3 = UtilisateurDTO
-                .builder()
-                .nomUtilisateur("Yassin3")
-                .mdp("yassinmdp")
-                .role(Role.RESPONSABLE)
-                .informationsPersonnelles("mes informatins perssonelles")
-                .build();
-
+        MockitoAnnotations.initMocks(this);
     }
 
     @Test
-    @Order(1)
     void obtenirUtilisateurs() {
-        utilisateurServiceImp.ajouterUtilisateur(utilisateurDTO1);
-        utilisateurServiceImp.ajouterUtilisateur(utilisateurDTO2);
-        utilisateurServiceImp.ajouterUtilisateur(utilisateurDTO3);
-
         // act
-        List<UtilisateurDTO> utilisateurDTOList = utilisateurServiceImp.obtenirUtilisateurs();
+        List<UtilisateurDTO> utilisateurAttendus = Arrays.asList(new UtilisateurDTO(), new UtilisateurDTO());
+        when(utilisateurRepository.findAll()).thenReturn(Arrays.asList(new Utilisateur(), new Utilisateur()));
+        when(utilisateurMapper.toDTO(any(Utilisateur.class))).thenReturn(new UtilisateurDTO());
 
         // assert
-        assertEquals(3, utilisateurDTOList.size());
+        List<UtilisateurDTO> utilisateurReel = utilisateurService.obtenirUtilisateurs();
+
+        assertEquals(utilisateurAttendus.size(), utilisateurReel.size());
+        verify(utilisateurRepository, times(1)).findAll();
+        verify(utilisateurMapper, times(2)).toDTO(any());
+    }
+    @Test
+    void ajouterUtilisateur(){
+
+        UtilisateurDTO utilisateurDTO = new UtilisateurDTO();
+        utilisateurDTO.setNomUtilisateur("Yassin");
+        utilisateurDTO.setMdp("1234");
+        utilisateurDTO.setRole(Role.ADMIN);
+        utilisateurDTO.setInformationsPersonnelles("nada");
+
+        Utilisateur utilisateur = new Utilisateur();
+        utilisateur.setId(1L);
+
+        when(utilisateurMapper.toEntity(utilisateurDTO)).thenReturn(utilisateur);
+        when(utilisateurRepository.save(any(Utilisateur.class))).thenReturn(utilisateur);
+        when(utilisateurMapper.toDTO(utilisateur)).thenReturn(utilisateurDTO);
+
+        UtilisateurDTO result = utilisateurService.ajouterUtilisateur(utilisateurDTO);
+
+        assertEquals(utilisateurDTO, result);
+
+        verify(utilisateurMapper, times(1)).toDTO(utilisateur);
+        verify(utilisateurMapper, times(1)).toEntity(utilisateurDTO);
+        verify(utilisateurRepository, times(1)).save(utilisateur);
+    }
+    @Test
+    void obtenirUtilisateurParId(){
+        Long id = 1L;
+        Utilisateur utilisateur = new Utilisateur();
+        UtilisateurDTO utilisateurDTOAttendus = new UtilisateurDTO();
+
+        when(utilisateurRepository.findById(id)).thenReturn(Optional.of(utilisateur));
+        when(utilisateurMapper.toDTO(utilisateur)).thenReturn(utilisateurDTOAttendus);
+
+        UtilisateurDTO result = utilisateurService.obtenirUtilisateurParId(id);
+
+        assertEquals(utilisateurDTOAttendus, result);
+
+        verify(utilisateurRepository, times(1)).findById(id);
+        verify(utilisateurMapper, times(1)).toDTO(utilisateur);
+
+
+    }
+    @Test
+    void supprimerUtilisateur(){
+        Long id = 1L;
+
+        when(utilisateurRepository.findById(id)).thenReturn(Optional.empty());
+        CustomException exception = assertThrows(CustomException.class,
+                () -> utilisateurService.supprimerUtilisateur(id));
+
+        assertEquals("patient avec 1 est introuvable", exception.getMessage());
+        verify(utilisateurRepository, times(1)).findById(id);
+        verify(utilisateurRepository, never()).deleteById(id);
     }
 
     @Test
-    @Order(2)
-    void ajouterUtilisateur() {
-        utilisateurServiceImp.ajouterUtilisateur(utilisateurDTO1);
+    void modifierUtilisateur(){
 
-        // assert
-        assertEquals(1, utilisateurRepository.count());
     }
 
-    @Test
-    @Order(3)
-    void obtenirUtilisateurParId() {
-        UtilisateurDTO utilisateurExiste = utilisateurServiceImp.ajouterUtilisateur(utilisateurDTO1);
-
-        // act
-        UtilisateurDTO utilisateurReturn = utilisateurServiceImp.obtenirUtilisateurParId(utilisateurExiste.getId());
-
-        // assert
-        assertNotNull(utilisateurReturn);
-        assertEquals(utilisateurDTO1.getNomUtilisateur(), utilisateurReturn.getNomUtilisateur());
-    }
-
-  /*  @Test
-    @Order(4)
-    void supprimerUtilisateur() {
-        UtilisateurDTO utilisateurExiste = utilisateurServiceImp.ajouterUtilisateur(utilisateurDTO1);
-        UtilisateurDTO utilisateurReturn = utilisateurServiceImp.obtenirUtilisateurParId(utilisateurExiste.getId());
-        utilisateurServiceImp.supprimerUtilisateur(utilisateurReturn.getId());
-        assertNotNull(utilisateurReturn);
-    }
-*/
     @AfterEach
     void tearDown() {
         utilisateurRepository.deleteAll();

@@ -1,7 +1,6 @@
 package com.example.techlab.controllers;
 
 
-import com.example.techlab.dto.PatientDTO;
 import com.example.techlab.dto.UtilisateurDTO;
 import com.example.techlab.services.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;

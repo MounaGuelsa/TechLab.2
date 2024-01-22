@@ -38,7 +38,9 @@ class UtilisateurRepositoryTest {
                 .role(Role.ADMIN)
                 .informationsPersonnelles("nada")
                 .build();
+
         utilisateur1= UtilisateurRepository.save(utilisateur1);
+
         utilisateur2 = Utilisateur.builder()
                 .nomUtilisateur("moona")
                 .mdp("1234")
