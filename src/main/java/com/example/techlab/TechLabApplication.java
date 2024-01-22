@@ -1,16 +1,11 @@
 package com.example.techlab;
 
 import com.example.techlab.dto.TestTypeDTO;
-import com.example.techlab.entities.Echantillon;
-import com.example.techlab.entities.Patient;
-import com.example.techlab.entities.Reactif;
-import com.example.techlab.entities.TestType;
+import com.example.techlab.entities.*;
 import com.example.techlab.entities.enums.Sexe;
+import com.example.techlab.entities.enums.StatutAnalyse;
 import com.example.techlab.entities.enums.TypeAnalyse;
-import com.example.techlab.repositories.EchantillonRepository;
-import com.example.techlab.repositories.PatientRepository;
-import com.example.techlab.repositories.ReactifRepository;
-import com.example.techlab.repositories.TestTypeRepository;
+import com.example.techlab.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -22,9 +17,9 @@ import java.util.Date;
 import java.util.List;
 
 @SpringBootApplication
-public class TechLabApplication /*implements CommandLineRunner*/ {
+public class TechLabApplication implements CommandLineRunner {
 
-   /* @Autowired
+    @Autowired
     private PatientRepository patientRepository;
     @Autowired
     private ReactifRepository reactifRepository;
@@ -32,14 +27,16 @@ public class TechLabApplication /*implements CommandLineRunner*/ {
     @Autowired
     private TestTypeRepository testTypeRepository;
     @Autowired
+    private TestRepository testRepository;
+    @Autowired
     private EchantillonRepository echantillonRepository;
-    */
+    @Autowired
+    private AnalyseRepository analyseRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(TechLabApplication.class, args);
     }
 
-    /*
     @Override
     public void run(String... args) throws Exception {
         Patient patient = new Patient();
@@ -58,8 +55,7 @@ public class TechLabApplication /*implements CommandLineRunner*/ {
         for (Patient p : allPatients) {
             System.out.println(p);
         }
-
-    Reactif reactif = new Reactif();
+        Reactif reactif = new Reactif();
         // Example 1
         Reactif reactif1 = new Reactif();
         reactif1.setNomReactif("Reactif A");
@@ -104,8 +100,6 @@ public class TechLabApplication /*implements CommandLineRunner*/ {
                 .patient(patient)  // Assuming you have a Patient instance created and assigned to the 'patient' variable
                 .analysesList(new ArrayList<>())  // Initialize with an empty list or add analyses later
                 .build();
-
-// Save the echantillon1
         echantillonRepository.save(echantillon1);
 
 // Similarly, you can create more instances of Echantillon and save them
@@ -118,7 +112,102 @@ public class TechLabApplication /*implements CommandLineRunner*/ {
                 .analysesList(new ArrayList<>())
                 .build();
 
-        echantillonRepository.save(echantillon2);*/
+        echantillonRepository.save(echantillon2);
+
+        Analyse analyse1 = Analyse.builder()
+                // .dateEffet(LocalDate.now())
+                .commentaire("Analyse for Test ABC")
+                .typeAnalyse(TypeAnalyse.MICROBIOLOGIE)
+                .statut(StatutAnalyse.EN_COURS)
+                .patient(patient)
+                .testsList(new ArrayList<>())  // Initialize with an empty list or add tests later
+                .build();
+
+// Save the analyse1
+        analyseRepository.save(analyse1);
+
+//// Linking Test instances to Analyse
+//        analyse1.getTestsList().add(test1);
+//        analyse1.getTestsList().add(test2);
+
+// Save the updated analyse1 with linked tests
+        analyseRepository.save(analyse1);
+
+// Example 2
+        Analyse analyse2 = Analyse.builder()
+                //.dateEffet(LocalDate.now())
+                .commentaire("Analyse for Test XYZ")
+                .typeAnalyse(TypeAnalyse.BIOCHIMIE)
+                .statut(StatutAnalyse.EN_COURS)
+                .patient(patient)
+
+                .testsList(new ArrayList<>())
+                .build();
+
+// Save the analyse2
+        analyseRepository.save(analyse2);
+
+//// Linking Test instances to Analyse
+//        analyse2.getTestsList().add(test2);
+//        analyse2.getTestsList().add(test3);
+
+// Save the updated analyse2 with linked tests
+        analyseRepository.save(analyse2);
+
+// Example 3
+        Analyse analyse3 = Analyse.builder()
+                //.dateEffet(LocalDate.now())
+                .commentaire("Analyse for Test 123")
+                .typeAnalyse(TypeAnalyse.MICROBIOLOGIE)
+                .statut(StatutAnalyse.TERMINEE)
+                .testsList(new ArrayList<>())
+                .patient(patient)
+                .echantillon(echantillon1)
+                .build();
+
+//// Save the analyse3
+//        analyseRepository.save(analyse3);
+//
+//// Linking Test instances to Analyse
+//        analyse3.getTestsList().add(test3);
+
+// Save the updated analyse3 with linked tests
+        analyseRepository.save(analyse3);
+        // Example 1
+        Test test1 = Test.builder()
+                .label("Test ABC")
+                .resultat(15.0)
+                .testType(testType1)  // Assuming you have a 'TestType' instance created and assigned to 'testType1'
+                .testReactifList(new ArrayList<>())  // Initialize with an empty list or add test reactifs later
+                .build();
+
+// Save the test1
+        testRepository.save(test1);
+
+// Example 2
+        Test test2 = Test.builder()
+                .label("Test XYZ")
+                .resultat(25.0)
+
+                .testType(testType2)  // Assuming you have another 'TestType' instance created and assigned to 'testType2'
+                .testReactifList(new ArrayList<>())
+                .build();
+
+// Save the test2
+        testRepository.save(test2);
+
+// Example 3
+        Test test3 = Test.builder()
+                .label("Test 123")
+                .resultat(10.0)
+                .testType(testType3)
+                .analyse(analyse1)
+                .testReactifList(new ArrayList<>())
+                .build();
+
+// Save the test3
+        testRepository.save(test3);
 
 
+    }
 }

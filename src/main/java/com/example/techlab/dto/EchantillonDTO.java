@@ -1,6 +1,7 @@
 package com.example.techlab.dto;
 
 
+import com.example.techlab.entities.Patient;
 import com.example.techlab.entities.enums.StatutResultat;
 import com.example.techlab.entities.enums.TypeAnalyse;
 import lombok.*;
@@ -19,7 +20,7 @@ public class EchantillonDTO {
     private String description;
     private LocalDate datePrelevement;
     private TypeAnalyse typeAnalyse;
-    private long patientId;
-    //private List<AnalyseDTO> analysesList;
+    private Patient patient;
+    private List<AnalyseDTO> analysesList;
    }
 

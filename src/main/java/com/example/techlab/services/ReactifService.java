@@ -15,8 +15,6 @@ public interface ReactifService {
 
 
     public void supprimerReactif(Long idReactif);
-
-
     public List<ReactifDTO> reactifExpire();
     public List<ReactifDTO> reactifReptureEnStock();
 

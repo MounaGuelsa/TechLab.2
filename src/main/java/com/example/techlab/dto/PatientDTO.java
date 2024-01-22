@@ -18,6 +18,6 @@ public class PatientDTO {
     private Sexe sexe;
     private String adresse;
     private String telephone;
-    //private List<AnalyseDTO> analyses;
+    private List<AnalyseDTO> analyses;
 
 }

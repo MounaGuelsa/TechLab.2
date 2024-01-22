@@ -53,11 +53,9 @@ public class PatientController {
         PatientDTO updatedPatientDTO = patientService.modifierPatient(idPatient, patientDTO);
         return new ResponseEntity<>(updatedPatientDTO, HttpStatus.OK);
     }
-//    @GetMapping("/{idPatient}/analyses")
-//    public ResponseEntity<List<Analyse>> obtenirAnalysesParPatient(@PathVariable Long idPatient) {
-//        // You can implement the logic to obtain analyses based on the patient ID here
-//        // For now, returning an empty list
-//        List<Analyse> analyses = patientService.obtenirAnalysesParPatient(idPatient);
-//        return new ResponseEntity<>(analyses, HttpStatus.OK);
-//    }
+    @GetMapping("/{idPatient}/analyses")
+    public ResponseEntity<List<Analyse>> obtenirAnalysesParPatient(@PathVariable Long idPatient) {
+        List<Analyse> analyses = patientService.HistoriqueAnalyses(idPatient);
+        return new ResponseEntity<>(analyses, HttpStatus.OK);
+    }
 }

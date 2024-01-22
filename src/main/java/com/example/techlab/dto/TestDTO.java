@@ -1,5 +1,8 @@
 package com.example.techlab.dto;
 
+import com.example.techlab.entities.Analyse;
+import com.example.techlab.entities.TestType;
+import com.example.techlab.entities.enums.StatutResultat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,4 +16,7 @@ public class TestDTO {
     private long id;
     private String label;
     private Double resultat;
+    private StatutResultat statutResultat;
+    private Analyse analyse;
+    private TestType testType;
 }

@@ -2,9 +2,11 @@ package com.example.techlab.entities;
 
 import com.example.techlab.entities.enums.StatutAnalyse;
 import com.example.techlab.entities.enums.TypeAnalyse;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,9 +24,9 @@ public class Analyse {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private TypeAnalyse typeAnalyse;
-    private Date dateEffet;
+    private LocalDate dateEffet;
     private String commentaire;
-
+    @JsonBackReference
     @ManyToOne
     private Patient patient;
     private StatutAnalyse statut;

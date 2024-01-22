@@ -10,7 +10,7 @@ public interface TestTypeService {
 
     public TestTypeDTO ajouterTestType(TestTypeDTO testTypeDTO);
 
-    public TestTypeDTO obtenirTestTypeParId(Long idReactif);
+    public TestTypeDTO obtenirTestTypeParId(Long idTest);
 
     public TestTypeDTO modifierTestType(Long idTestType, TestTypeDTO testTypeDTO);
 

@@ -1,6 +1,7 @@
 package com.example.techlab.entities;
 
 import com.example.techlab.entities.enums.Sexe;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -38,7 +39,7 @@ public class Patient {
 
     @Column(name = "telephone_patient")
     private String telephone;
-
+    @JsonManagedReference
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Analyse> analyses;
 }

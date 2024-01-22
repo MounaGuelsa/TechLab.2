@@ -15,6 +15,7 @@ public class TestReactif {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    private long quantiteUtilisee;
     @ManyToOne
     @JoinColumn(name="id_test")
     private Test test;

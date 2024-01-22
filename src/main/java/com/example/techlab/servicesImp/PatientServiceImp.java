@@ -3,7 +3,6 @@ package com.example.techlab.servicesImp;
 import com.example.techlab.dto.PatientDTO;
 import com.example.techlab.entities.Analyse;
 import com.example.techlab.entities.Patient;
-import com.example.techlab.entities.TestType;
 import com.example.techlab.exceptions.CustomException;
 import com.example.techlab.mapper.PatientMapper;
 import com.example.techlab.repositories.PatientRepository;
@@ -88,7 +87,13 @@ public class PatientServiceImp implements PatientService {
     }
 
     @Override
-    public List<Analyse> obtenirAnalysesParPatient(PatientDTO patientDTO) {
-        return null;
+    public List<Analyse> HistoriqueAnalyses(Long patientDTO) {
+        Optional<Patient> patientOptional = patientRepository.findById(patientDTO);
+        if (!patientOptional.isPresent()) {
+            throw new CustomException("Patient avec l'ID " + patientDTO + " introuvable", HttpStatus.NOT_FOUND);
+        }
+        Patient patient = patientOptional.get();
+        List<Analyse> historiqueAnalyses = patient.getAnalyses();
+        return historiqueAnalyses;
     }
 }

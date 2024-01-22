@@ -61,6 +61,7 @@ public class EchantillonServiceImp implements EchantillonService {
         Echantillon echantillon= existingEchantillonOptional.get();
         echantillon.setType(echantillonDTO.getType());
         echantillon.setDescription(echantillonDTO.getDescription());
+        echantillon.setPatient(echantillonDTO.getPatient());
         echantillon.setDatePrelevement(echantillonDTO.getDatePrelevement());
         echantillon.setTypeAnalyse(echantillonDTO.getTypeAnalyse());
         Echantillon echantillonUpdated = echantillonRepository.save(echantillon);
