@@ -14,4 +14,6 @@ public interface TestService {
     public TestDTO modifierTest(Long idTest, TestDTO testDTO);
 
     public void supprimerTest(Long idTest);
+
+    void determinerStatutResultat(TestDTO addedTest);
 }

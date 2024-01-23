@@ -22,7 +22,7 @@ public class TestController {
     }
     @GetMapping
     public ResponseEntity<List<TestDTO>> listeTest() {
-        List<TestDTO> tests = testService.listeTest();
+        List<TestDTO> tests = testService.listTest();
         return new ResponseEntity<>(tests, HttpStatus.OK);
     }
     @PostMapping

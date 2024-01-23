@@ -23,7 +23,7 @@ public class AnalyseController {
 
     @GetMapping
     public ResponseEntity<List<AnalyseDTO>> obtenirAnalyses() {
-        List<AnalyseDTO> analyses = analyseService.listeAnalyses();
+        List<AnalyseDTO> analyses = analyseService.obtenirAnalyses();
         return new ResponseEntity<>(analyses, HttpStatus.OK);
     }
 
