@@ -18,5 +18,5 @@ public class TestDTO {
     private Double resultat;
     private StatutResultat statutResultat;
     private Analyse analyse;
-    private TestType testType;
+    private TestTypeDTO testTypeDTO;
 }
