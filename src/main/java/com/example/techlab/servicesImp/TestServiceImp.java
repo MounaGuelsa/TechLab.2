@@ -93,8 +93,8 @@ public class TestServiceImp implements TestService {
 
 
     public void determinerStatutResultat(TestDTO testDTO) {
-        if (testDTO.getResultat() != null && testDTO.getTestType() != null) {
-            if (testDTO.getResultat() >= testDTO.getTestType().getMin() && testDTO.getResultat() <= testDTO.getTestType().getMax()) {
+        if (testDTO.getResultat() != null && testDTO.getTestTypeDTO() != null) {
+            if (testDTO.getResultat() >= testDTO.getTestTypeDTO().getMin() && testDTO.getResultat() <= testDTO.getTestTypeDTO().getMax()) {
                 testDTO.setStatutResultat(StatutResultat.NORMAL);
             } else {
                 testDTO.setStatutResultat(StatutResultat.ANORMAL);

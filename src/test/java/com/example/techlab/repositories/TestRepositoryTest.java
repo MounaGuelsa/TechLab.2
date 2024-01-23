@@ -78,7 +78,7 @@ class TestRepositoryTest {
         List<Test> testList = testRepository.findAll();
         // assert
         assertFalse(testList.isEmpty());
-        assertEquals(2, testList.size());
+        assertEquals(3, testList.size());
     }
 
     @org.junit.jupiter.api.Test
