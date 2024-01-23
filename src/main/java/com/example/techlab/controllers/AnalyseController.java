@@ -51,6 +51,7 @@ public class AnalyseController {
             @RequestBody AnalyseDTO analyseDTO) {
         AnalyseDTO updatedAnalyseDTO = analyseService.modifierAnalyse(idAnalyse, analyseDTO);
         return new ResponseEntity<>(updatedAnalyseDTO, HttpStatus.OK);
+        //5
     }
 
     @GetMapping("/en-cours")
