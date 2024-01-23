@@ -11,7 +11,7 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel="spring")
 public interface EchantillonMapper {
     @Mapping(target = "analysesListDTO",source ="analysesList")
-    @Mapping(target = "patientTO",source ="patient")
+    @Mapping(target = "patientDTO",source ="patient")
     EchantillonDTO toDTO(Echantillon echantillon);
     @Mapping(target="analysesList",source = "analysesListDTO")
     @Mapping(target="patient",source = "patientDTO")

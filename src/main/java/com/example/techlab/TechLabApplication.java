@@ -1,6 +1,6 @@
 package com.example.techlab;
 
-import com.example.techlab.dto.TestTypeDTO;
+
 import com.example.techlab.entities.*;
 import com.example.techlab.entities.enums.Sexe;
 import com.example.techlab.entities.enums.StatutAnalyse;
@@ -10,12 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@EnableSwagger2
+@EnableWebMvc
 @SpringBootApplication
 public class TechLabApplication implements CommandLineRunner {
 
@@ -97,7 +101,7 @@ public class TechLabApplication implements CommandLineRunner {
                 .description("Blood sample for analysis")
                 .datePrelevement(LocalDate.now())
                 .typeAnalyse(TypeAnalyse.MICROBIOLOGIE)
-                .patient(patient)  // Assuming you have a Patient instance created and assigned to the 'patient' variable
+                .patient(patient)
                 .analysesList(new ArrayList<>())  // Initialize with an empty list or add analyses later
                 .build();
         echantillonRepository.save(echantillon1);
