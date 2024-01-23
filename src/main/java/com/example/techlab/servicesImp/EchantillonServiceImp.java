@@ -2,7 +2,6 @@ package com.example.techlab.servicesImp;
 
 import com.example.techlab.dto.EchantillonDTO;
 import com.example.techlab.entities.Echantillon;
-import com.example.techlab.entities.Patient;
 import com.example.techlab.exceptions.CustomException;
 import com.example.techlab.mapper.EchantillonMapper;
 import com.example.techlab.repositories.EchantillonRepository;
@@ -61,7 +60,7 @@ public class EchantillonServiceImp implements EchantillonService {
         Echantillon echantillon= existingEchantillonOptional.get();
         echantillon.setType(echantillonDTO.getType());
         echantillon.setDescription(echantillonDTO.getDescription());
-        echantillon.setPatient(echantillonDTO.getPatient());
+        //echantillon.setPatient(echantillonDTO.getPatientDTO());
         echantillon.setDatePrelevement(echantillonDTO.getDatePrelevement());
         echantillon.setTypeAnalyse(echantillonDTO.getTypeAnalyse());
         Echantillon echantillonUpdated = echantillonRepository.save(echantillon);

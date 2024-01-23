@@ -1,6 +1,9 @@
 package com.example.techlab.dto;
 
 
+import com.example.techlab.entities.Echantillon;
+import com.example.techlab.entities.Patient;
+import com.example.techlab.entities.Utilisateur;
 import com.example.techlab.entities.enums.StatutAnalyse;
 import com.example.techlab.entities.enums.TypeAnalyse;
 import lombok.AllArgsConstructor;
@@ -20,9 +23,9 @@ public class AnalyseDTO {
     private TypeAnalyse typeAnalyse;
     private Date dateEffet;
     private String commentaire;
-    private Long patientId;
+    private PatientDTO patientDTO;
     private StatutAnalyse statut;
-    private Long echantillonId;
-    private Long technicienId;
-    private List<TestDTO> testsList;
+    private EchantillonDTO echantillonDTO;
+    private UtilisateurDTO technicienDTO;
+    private List<TestDTO> testsListDTO;
 }

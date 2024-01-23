@@ -39,7 +39,7 @@ public class Patient {
 
     @Column(name = "telephone_patient")
     private String telephone;
-    @JsonManagedReference
+//    @JsonManagedReference
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Analyse> analyses;
 }

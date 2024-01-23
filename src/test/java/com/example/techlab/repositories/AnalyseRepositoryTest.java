@@ -76,7 +76,7 @@ class AnalyseRepositoryTest {
         Utilisateur technicien = new Utilisateur();
 
         analyse1 = Analyse.builder()
-                .dateEffet(new Date())
+                //.dateEffet(new Date())
                 .commentaire("Test Commentaire")
                 .patient(patient)
                 .echantillon(echantillon)
@@ -84,7 +84,7 @@ class AnalyseRepositoryTest {
                 .build();
 
         analyse2 = Analyse.builder()
-                .dateEffet(new Date())
+                //.dateEffet(new Date())
                 .commentaire("Test Commentaire")
                 .patient(patient)
                 .echantillon(echantillon)

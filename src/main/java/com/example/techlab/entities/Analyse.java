@@ -26,7 +26,7 @@ public class Analyse {
     private TypeAnalyse typeAnalyse;
     private LocalDate dateEffet;
     private String commentaire;
-    @JsonBackReference
+    //@JsonBackReference
     @ManyToOne
     private Patient patient;
     private StatutAnalyse statut;

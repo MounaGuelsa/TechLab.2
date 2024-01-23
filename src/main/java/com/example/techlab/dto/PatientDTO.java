@@ -1,5 +1,6 @@
 package com.example.techlab.dto;
 
+import com.example.techlab.entities.Patient;
 import com.example.techlab.entities.enums.Sexe;
 import lombok.*;
 
@@ -10,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class PatientDTO {
+public class PatientDTO  {
     private long id;
     private String nom;
     private String prenom;
@@ -18,6 +19,6 @@ public class PatientDTO {
     private Sexe sexe;
     private String adresse;
     private String telephone;
-    private List<AnalyseDTO> analyses;
+    private List<AnalyseDTO> analysesDTO;
 
 }

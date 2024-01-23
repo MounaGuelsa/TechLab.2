@@ -9,14 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
 
-
-
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Builder
+
 
 @Table(name="planifications")
 
