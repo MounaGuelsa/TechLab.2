@@ -21,7 +21,7 @@ public class UtilisateurDTO {
     private String mdp;
     private Role role;
     private String informationsPersonnelles;
-    private List<Analyse> analyses;
+    private List<AnalyseDTO> analysesDTO;
     //private List<Planification> planifications;
     //user dtos
 }
