@@ -92,6 +92,41 @@ class UtilisateurServiceImpTest {
 
 
     }
+
+    @Test
+    void modifierUtilisateur(){
+        Long idUtilisateur = 1L;
+        UtilisateurDTO nouvelUtilisateurDTO = new UtilisateurDTO();
+        nouvelUtilisateurDTO.setNomUtilisateur("Nouveau Nom");
+        nouvelUtilisateurDTO.setMdp("Nouveau Mdp");
+
+        // Add more fields as needed
+
+        Utilisateur existingUtilisateur = new Utilisateur();
+        existingUtilisateur.setId(idUtilisateur);
+        existingUtilisateur.setNomUtilisateur("Ancien Nom");
+        existingUtilisateur.setMdp("Ancien Mdp");
+
+        // Add more fields as needed
+
+        when(utilisateurRepository.findById(idUtilisateur)).thenReturn(Optional.of(existingUtilisateur));
+        when(utilisateurRepository.save(existingUtilisateur)).thenReturn(existingUtilisateur); // Assuming modification updates the existing entity
+        when(utilisateurMapper.toDTO(existingUtilisateur)).thenReturn(nouvelUtilisateurDTO);
+
+        // Act
+        UtilisateurDTO result = utilisateurService.modifierUtilisateur(idUtilisateur, nouvelUtilisateurDTO);
+
+        // Assert
+        assertEquals(nouvelUtilisateurDTO, result);
+        assertEquals("Nouveau Nom", existingUtilisateur.getNomUtilisateur()); // Verify that the name is updated
+        assertEquals("Nouveau Mdp", existingUtilisateur.getMdp()); // Verify that the surname is updated
+
+
+        verify(utilisateurRepository, times(1)).findById(idUtilisateur);
+        verify(utilisateurRepository, times(1)).save(existingUtilisateur);
+        verify(utilisateurMapper, times(1)).toDTO(existingUtilisateur);
+
+    }
     @Test
     void supprimerUtilisateur(){
         Long id = 1L;
@@ -105,10 +140,7 @@ class UtilisateurServiceImpTest {
         verify(utilisateurRepository, never()).deleteById(id);
     }
 
-    @Test
-    void modifierUtilisateur(){
 
-    }
 
     @AfterEach
     void tearDown() {
